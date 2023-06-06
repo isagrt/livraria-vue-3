@@ -21,11 +21,11 @@ export default {
       this.editora = {};
       this.editoras = await editorasApi.buscarTodasAsEditoras();
     },
-    editar(categoria) {
-      Object.assign(this.categoria, categoria);
+    editar(editora) {
+      Object.assign(this.editora, editora);
     },
-    async excluir(categoria) {
-      await editorasApi.excluirCategoria(categoria.id);
+    async excluir(editora) {
+      await editorasApi.excluirEditora(editora.id);
       this.editoras = await editorasApi.buscarTodasAsEditoras();
     },
   },
@@ -33,19 +33,19 @@ export default {
 </script>
 
 <template>
-  <h1>Categoria</h1>
+  <h1>Editora</h1>
   <hr />
   <div class="form">
-    <input type="text" v-model="categoria.descricao" placeholder="Descrição" />
+    <input type="text" v-model="editora.descricao" placeholder="Descrição" />
     <button @click="salvar">Salvar</button>
   </div>
   <hr />
   <ul>
-    <li v-for="categoria in editoras" :key="categoria.id">
-      <span @click="editar(categoria)">
-        ({{ categoria.id }}) - {{ categoria.descricao }} -
+    <li v-for="editora in editoras" :key="editora.id">
+      <span @click="editar(editora)">
+        ({{ editora.id }}) - {{ editora.descricao }} -
       </span>
-      <button @click="excluir(categoria)">X</button>
+      <button @click="excluir(editora)">X</button>
     </li>
   </ul>
 </template>
